@@ -65,7 +65,15 @@ Add the albums.json file:
 }
 and We run the same commande line to get the files : 'albums.dart' and 'albums.g.dart'
 
+Now we have the both models..
+//Let's start by creating a service to get the from from the Service
 
+Now we will add the Sqflite library to create an offline database..
+//
+sqflite: ^1.1.3
+//
+link to all libraries used is provided in the description below.
+Let's write the basic CRUD operations for saving the albums in the Offline Database...
 
-
+Create the class DBHelper.dart
 
