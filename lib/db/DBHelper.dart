@@ -1,21 +1,27 @@
 import 'dart:async';
 import 'dart:io' as io;
+
 import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
+
 import '../models/album.dart';
 import '../models/albums.dart';
 
 class DBHelper {
   static Database _db;
+
   // Create the Table colums
   static const String TABLE = 'albums';
+
   //static const String ALBUM_ID = 'albumId';
   static const String USER_ID = 'userId';
   static const String ID = 'id';
   static const String TITLE = 'title';
+
   //static const String URL = 'url';
   static const String BODY = 'body';
+
   //static const String THUMBNAIL_URL = 'thumbnailUrl';
   static const String DB_NAME = 'albums.db';
 
@@ -55,7 +61,7 @@ class DBHelper {
     var dbClient = await db;
     // specify the column names you want in the result set
     List<Map> maps =
-    await dbClient.query(TABLE, columns: [ID, TITLE, BODY]);
+        await dbClient.query(TABLE, columns: [ID, USER_ID, TITLE, BODY]);
     Albums allAlbums = Albums();
     List<Album> albums = [];
     if (maps.length > 0) {
@@ -68,7 +74,7 @@ class DBHelper {
   }
 
   // Method to delete an Album from the Database
-  Future<int> delete(int id) async {
+  Future<int> delete(num id) async {
     var dbClient = await db;
     return await dbClient.delete(TABLE, where: '$ID = ?', whereArgs: [id]);
   }
